@@ -9,7 +9,7 @@ export const TextureSelector = () => {
 	useEffect(() => {
 		const options = { dirt, glass, grass, wood, log }
 		const selectedTexture = Object.entries(options).find(
-			([texture, isEnabled]) => isEnabled
+			([, isEnabled]) => isEnabled
 		)
 		if (selectedTexture) {
 			const [textureName] = selectedTexture

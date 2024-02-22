@@ -1,4 +1,3 @@
-import React from 'react'
 import { useMinecraftStore } from '../hooks/useMinecraftStore'
 
 export const Menu = () => {

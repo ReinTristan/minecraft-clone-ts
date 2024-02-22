@@ -1,4 +1,3 @@
-import React from 'react'
 import { IStore, useMinecraftStore } from '../hooks/useMinecraftStore'
 import { Cube } from './Cube'
 

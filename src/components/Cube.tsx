@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { ICube, useMinecraftStore } from '../hooks/useMinecraftStore'
 import { ThreeEvent } from '@react-three/fiber'
 
-const MAX_DISTANCE = 4
 const FACE_DIRECTION_VALUES = {
 	face0: [1, 0, 0],
 	face1: [-1, 0, 0],

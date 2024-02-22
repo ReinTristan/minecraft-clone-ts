@@ -1,4 +1,4 @@
-import { useContactMaterial, useCylinder, useSphere } from '@react-three/cannon'
+import { useSphere } from '@react-three/cannon'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { Mesh, Vector3 } from 'three'
