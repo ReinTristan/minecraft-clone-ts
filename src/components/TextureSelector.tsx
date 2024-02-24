@@ -13,7 +13,6 @@ export const TextureSelector = () => {
 		)
 		if (selectedTexture) {
 			const [textureName] = selectedTexture
-            console.log(textureName)
 			setTexture(textureName)
 		}
 	}, [dirt, glass, grass, wood, log])
@@ -22,6 +21,7 @@ export const TextureSelector = () => {
 	return (
 		<div className={`texture-selector`}>
 			{Object.entries(images).map(([imgKey, img]) => {
+				if(imgKey === 'bedrockImg') return null
 				return (
 
 					<img

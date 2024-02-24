@@ -11,22 +11,45 @@ texture: string
 export interface IStore {
     texture: string,
     cubes: ICube[],
+    currentWorld: string | null
     addCube: (x: number, y: number, z: number) => void,
     removeCube: (id: string) => void,
     setTexture: (name: string) => void
-    saveWorld: () => void,
+    saveWorld: (worldName?: string) => void,
     resetWorld: () => void,
+    setWorld: (worldName?: string) => void
+    getTotalWorlds: () => number
+    setTotalWorlds: () => void
 }
 
-const getLocalStorage = (key: string) => JSON.parse(localStorage.getItem(key) ?? '[]')
-const setLocalStorage = (key: string, value: unknown) =>{ localStorage.setItem(key, JSON.stringify(value))}
+const getLocalStorage = <T>(key: string): T | null => {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) as T : null;
+}
+const setLocalStorage = <T>(key: string, value: T) => { 
+    localStorage.setItem(key, JSON.stringify(value))
+}
 
 
 export const useMinecraftStore = create<IStore>((set) =>  ({
     texture: 'dirt',
-    cubes: getLocalStorage('cubes') || [],
+    cubes: [],
+    currentWorld: null,
+    getTotalWorlds: () => {
+        let totalWorlds = getLocalStorage<number>('totalWorlds')
+        if(!totalWorlds) {
+            setLocalStorage<number>('totalWorlds', 0)
+            totalWorlds = 0
+        }
+        return totalWorlds
+    },
+    setTotalWorlds: () => {
+        set((state) => {
+            setLocalStorage<number>('totalWorlds', state.getTotalWorlds() + 1)
+            return state
+        })
+    },
     addCube: (x,y,z) => {
-        console.log({x,y,z})
         set(state => ({
             cubes: [...state.cubes, {
                 id: nanoid(),
@@ -45,7 +68,12 @@ export const useMinecraftStore = create<IStore>((set) =>  ({
     },
     saveWorld: () => {
         set(state => {
-            setLocalStorage('cubes', state.cubes)
+            if(!state.currentWorld) {
+                setLocalStorage<ICube[]>(`world_${state.getTotalWorlds() + 1}`, state.cubes)
+                setLocalStorage<number>('totalWorlds', state.getTotalWorlds() + 1)
+            }
+            else setLocalStorage<ICube[]>(state.currentWorld, state.cubes)
+
             return state
         })
     },
@@ -53,5 +81,11 @@ export const useMinecraftStore = create<IStore>((set) =>  ({
         set(() => ({
             cubes: []
         }))
-    }
+    },
+    setWorld(worldName = '') {
+        set(() => ({
+            cubes: getLocalStorage<ICube[]>(worldName) ?? [],
+            currentWorld: worldName || null
+        }))
+    },
 }))

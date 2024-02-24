@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 const ACTIONS_KEYBOARD_MAP = {
+    Escape: 'pause',
     KeyW: 'moveForward',
     KeyS: 'moveBackward',
     KeyA: 'moveLeft',
@@ -17,6 +18,7 @@ const ACTIONS_KEYBOARD_MAP = {
 type actionsKey = keyof typeof ACTIONS_KEYBOARD_MAP
 export const useKeyboard = () => {
     const [actions, setActions] = useState({
+        pause: false,
         moveForward: false,
         moveBackward: false,
         moveLeft: false,

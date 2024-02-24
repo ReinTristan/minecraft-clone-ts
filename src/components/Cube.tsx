@@ -27,7 +27,6 @@ export const Cube = ({ id, pos: position, texture }: ICube) => {
 		e?.stopPropagation()
 		if (e.button === 2) {
 			const faceIndex = e.faceIndex ?? 1
-			console.log(faceIndex)
 			const clickedFace = Math.floor(faceIndex / 2)
 			const faceValues =
 				FACE_DIRECTION_VALUES[
