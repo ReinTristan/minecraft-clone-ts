@@ -8,7 +8,7 @@ function App() {
     <>
       <GameScene />
       <Menus />
-      <span className='version-title'>Version 0.2.0</span>
+      <span className='version-title'>Version {import.meta.env.VITE_CURRENT_VERSION}</span>
 
     </>
   )
