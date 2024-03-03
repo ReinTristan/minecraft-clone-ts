@@ -1,11 +1,21 @@
 import { useMinecraftStore } from '../hooks/useMinecraftStore'
 import { useMenuStore } from '../hooks/useMenuStore'
 import { useState } from 'react'
+import { useAgent } from '../hooks/useAgent'
 
 export const MainMenu = () => {
     const {setWorld, getTotalWorlds} = useMinecraftStore()
     const {setMainMenu } = useMenuStore()
     const [worldSelection, setWorldSelection] = useState(false)
+    const {browser} = useAgent()
+    if(browser !== 'Chrome') {
+      return <>
+         <div className='main-menu'>
+          <h1>Minecraft</h1>
+          <span className='menu-text'>Unfortunately your browser is not supported at the moment</span>
+        </div>
+      </>
+    }
   return (
     <>
     <div className='main-menu'>

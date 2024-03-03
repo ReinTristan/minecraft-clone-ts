@@ -6,6 +6,11 @@ export const PauseMenu = () => {
 	const { setMainMenu, setPauseMenu } = useMenuStore()
 	return (
 		<div className='pause-menu'>
+						<button
+				onClick={() => {
+					setPauseMenu(false)
+				}}
+			>Resume</button>
 			<button
 				onClick={() => {
 					saveWorld()

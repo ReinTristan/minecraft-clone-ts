@@ -78,12 +78,19 @@ button {
 	top: 25%;
 	left: 50%;
 	translate: -50% -25%;
+	max-width: fit-content;
+	display: flex;
+	flex-direction: column;
 }
+
 .main-menu h1 {
 	font-size: 6rem;
 	text-align: center;
 }
-
+.main-menu .menu-text {
+	font-size: 5rem;
+	max-width: fit-content;
+}
 .main-menu .main-menu-buttons {
 	margin-top: 16px;
 	display: flex;
@@ -127,4 +134,12 @@ button {
 	font-size: 3rem;
 	top: 32px;
 	right: 32px;
+}
+
+.pause-help {
+	position: absolute;
+	font-weight: bold;
+	font-size: 3rem;
+	top: 32px;
+	left: 32px;
 }

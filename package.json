@@ -14,11 +14,13 @@
 		"@react-three/cannon": "^6.6.0",
 		"@react-three/drei": "^9.97.5",
 		"@react-three/fiber": "^8.15.16",
+		"@types/ua-parser-js": "^0.7.39",
 		"nanoid": "^5.0.6",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"serve": "^14.2.1",
 		"three": "^0.161.0",
+		"ua-parser-js": "^1.0.37",
 		"zustand": "4.5.1"
 	},
 	"devDependencies": {

@@ -17,6 +17,7 @@ export function Menus() {
   return (
     <> 
     {!mainMenu && <>
+      <span className="pause-help">Double Esc to pause</span>
       <TextureSelector />
       {pauseMenu && <PauseMenu />}
     </>}
