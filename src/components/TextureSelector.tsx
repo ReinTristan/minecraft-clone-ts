@@ -17,20 +17,20 @@ export const TextureSelector = () => {
 		}
 	}, [dirt, glass, grass, wood, log])
 
-
 	return (
 		<div className={`texture-selector`}>
 			{Object.entries(images).map(([imgKey, img]) => {
-				if(imgKey === 'bedrockImg') return null
+				if (imgKey === 'bedrockImg') return null
 				return (
-
 					<img
 						src={img}
 						alt={imgKey}
 						key={imgKey}
 						onClick={() => setTexture(img)}
-                        className={`${texture === imgKey.replace('Img', '') ? 'selected': ''}`}
-                    />
+						className={`${
+							texture === imgKey.replace('Img', '') ? 'selected' : ''
+						}`}
+					/>
 				)
 			})}
 		</div>

@@ -9,14 +9,14 @@ function Ground() {
 		rotation: [-Math.PI / 2, 0, 0],
 		position: [0, -0.5, 0],
 	}))
-	const {addCube} = useMinecraftStore()
-    groundTexture.repeat.set(100, 100)
+	const { addCube } = useMinecraftStore()
+	groundTexture.repeat.set(100, 100)
 
 	const handleClickGround = (e: ThreeEvent<MouseEvent>) => {
 		e?.stopPropagation()
-		if(e.button !== 2)return
-		const [x,y,z] = Object.values(e.point).map(n => Math.ceil(n))
-		addCube(x,y,z)
+		if (e.button !== 2) return
+		const [x, y, z] = Object.values(e.point).map((n) => Math.ceil(n))
+		addCube(x, y, z)
 	}
 
 	return (
