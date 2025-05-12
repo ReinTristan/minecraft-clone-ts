@@ -1,16 +1,15 @@
+import { GameScene } from '@/components/GameScene'
+import { Menus } from '@/components/UI/Menus/Menus'
 
-import { GameScene } from "./components/GameScene"
-import { Menus } from "./components/Menus"
-
+const version = import.meta.env.VITE_CURRENT_VERSION
 
 function App() {
   return (
-    <>
+    <main className='font-mc fixed h-full w-full overflow-hidden select-none'>
       <GameScene />
       <Menus />
-      <span className='version-title'>Version {import.meta.env.VITE_CURRENT_VERSION}</span>
-
-    </>
+      <span className='version-title'>Version {version}</span>
+    </main>
   )
 }
 
