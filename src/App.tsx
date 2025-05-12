@@ -8,7 +8,9 @@ function App() {
     <main className='font-mc fixed h-full w-full select-none'>
       <GameScene />
       <Menus />
-      <span className='version-title'>Version {version}</span>
+      <span className='absolute top-8 right-8 text-5xl font-bold'>
+        Version {version}
+      </span>
     </main>
   )
 }

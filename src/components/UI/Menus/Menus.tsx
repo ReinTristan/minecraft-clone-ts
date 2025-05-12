@@ -18,7 +18,9 @@ export function Menus() {
     <>
       {!mainMenu && (
         <>
-          <span className='pause-help'>Double Esc to pause</span>
+          <span className='absolute top-8 left-8 text-5xl font-bold'>
+            Double Esc to pause
+          </span>
           <HotBar />
           {pauseMenu && <PauseMenu />}
         </>

@@ -6,7 +6,7 @@ import { Fvp } from '@/components/Player/FVP'
 import { Player } from '@/components/Player/Player'
 import { Cubes } from '@/components/World/Cubes'
 import { useMenuStore } from '@/hooks/useMenuStore'
-import { CrossHair } from '@/components/Player/CrossHair'
+import { CrossHair } from '@/components/UI/HUD/CrossHair'
 
 export function GameScene() {
   const { mainMenu, pauseMenu } = useMenuStore()
