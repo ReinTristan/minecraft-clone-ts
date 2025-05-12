@@ -5,7 +5,7 @@ const version = import.meta.env.VITE_CURRENT_VERSION
 
 function App() {
   return (
-    <main className='font-mc fixed h-full w-full overflow-hidden select-none'>
+    <main className='font-mc fixed h-full w-full select-none'>
       <GameScene />
       <Menus />
       <span className='version-title'>Version {version}</span>

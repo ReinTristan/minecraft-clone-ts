@@ -1,7 +1,7 @@
 import { useBox } from '@react-three/cannon'
 import { Mesh } from 'three'
 import { texturesObj } from '@/assets/textures/textures'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ICube, useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { ThreeEvent } from '@react-three/fiber'
 
@@ -54,7 +54,7 @@ export const Cube = ({ id, pos: position, texture }: ICube) => {
         e.stopPropagation()
         setIsHovered(false)
       }}
-      onClick={handleClick}
+      onPointerDown={handleClick}
     >
       <boxGeometry attach='geometry' />
       <meshStandardMaterial

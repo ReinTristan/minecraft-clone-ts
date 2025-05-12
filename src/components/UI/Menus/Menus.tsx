@@ -4,6 +4,7 @@ import { MainMenu } from '@/components/UI/Menus/MainMenu'
 import { useMenuStore } from '@/hooks/useMenuStore'
 import { useKeyboard } from '@/hooks/useKeyboard'
 import { useEffect } from 'react'
+import { HotBar } from '../HUD/HotBar'
 export function Menus() {
   const { mainMenu, pauseMenu, setPauseMenu } = useMenuStore()
   const { pause } = useKeyboard()
@@ -18,7 +19,7 @@ export function Menus() {
       {!mainMenu && (
         <>
           <span className='pause-help'>Double Esc to pause</span>
-          <TextureSelector />
+          <HotBar />
           {pauseMenu && <PauseMenu />}
         </>
       )}

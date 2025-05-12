@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { useKeyboard } from '@/hooks/useKeyboard'
 import * as images from '@/assets/textures/images'
-export const TextureSelector = () => {
+export const HotBar = () => {
   const { texture, setTexture } = useMinecraftStore()
   const { dirt, glass, grass, wood, log } = useKeyboard()
 

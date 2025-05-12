@@ -3,11 +3,8 @@ import { groundTexture } from '@/assets/textures/textures'
 import { Mesh } from 'three'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { ThreeEvent } from '@react-three/fiber'
-import { useState } from 'react'
 
 function Ground() {
-  const [isHovered, setIsHovered] = useState(false)
-
   const [ref] = usePlane<Mesh>(() => ({
     rotation: [-Math.PI / 2, 0, 0],
     position: [-0.5, -0.5, -0.5],
@@ -23,13 +20,9 @@ function Ground() {
   }
 
   return (
-    <mesh ref={ref} onClick={handleClickGround}>
+    <mesh ref={ref} onPointerDown={handleClickGround}>
       <planeGeometry attach='geometry' args={[100, 100]} />
-      <meshStandardMaterial
-        attach='material'
-        map={groundTexture}
-        color={isHovered ? '#CCC' : 'white'}
-      />
+      <meshStandardMaterial attach='material' map={groundTexture} />
     </mesh>
   )
 }
