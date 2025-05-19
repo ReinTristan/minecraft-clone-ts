@@ -36,7 +36,7 @@ const setLocalStorage = <T>(key: string, value: T) => {
 export const useMinecraftStore = create<IStore>()((set) => ({
   cubes: [],
   currentWorld: null,
-  hotBarCurrentSlot: 5,
+  hotBarCurrentSlot: 0,
 
   getTotalWorlds: () => {
     let totalWorlds = getLocalStorage<number>('totalWorlds')

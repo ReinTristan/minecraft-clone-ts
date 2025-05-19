@@ -1,4 +1,4 @@
-import { initialTexturesIds, texturesData } from '@/lib/utils'
+import { initialTexturesIds, texturesData, texturesLoaded } from '@/lib/utils'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { useEffect } from 'react'
 export const HotBar = () => {
@@ -22,7 +22,11 @@ export const HotBar = () => {
           <div className='size-1/2 object-contain'>
             {slots[pos - 1] && (
               <img
-                src={`src/assets/textures/${texturesData.get(slots[pos - 1])?.textures.top}.png`}
+                src={`${
+                  texturesLoaded.get(
+                    texturesData.get(slots[pos - 1])?.textures.top ?? 'dirt'
+                  )?.image.src
+                }`}
                 alt={`slot${pos}`}
                 className='size-full'
               />

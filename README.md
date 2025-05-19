@@ -19,5 +19,4 @@ This is a simple Minecraft clone built with TypeScript and Three.js based on [Mi
 - Original project by [freeCodeCamp](https://github.com/danba340/minecraft-freecodecamp)
 - Followed Tutorial from [Midudev](https://github.com/midudev/minecraft-clone)
 - Minecraft textures from [mcassest.cloud](https://mcasset.cloud/) by [InventivetalentDev](https://github.com/InventivetalentDev/minecraft-assets/tree/1.21.5)
-- Minecraft-Like font from [dafont.com](https://www.dafont.com/es/minecraft.font) by [Craftron Gaming
-  ](https://www.dafont.com/es/craftron-gaming.d6128)
+- Minecraft-Like font from [dafont.com](https://www.dafont.com/es/minecraft.font) by [Craftron Gaming](https://www.dafont.com/es/craftron-gaming.d6128)

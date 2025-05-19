@@ -1,5 +1,6 @@
 import blocksInfo from '@/data/blocks_info.json' with { type: 'json' }
 import textureList from '@/data/texture_list.json' with { type: 'json' }
+
 import {
   CubeFaces,
   TextureInfo,
@@ -7,24 +8,17 @@ import {
   TexturePositionKey,
   TextureWithImages,
 } from '@/types/cubes'
-import {
-  Texture,
-  TextureLoader,
-  MeshStandardMaterial,
-  NearestFilter,
-  CanvasTexture,
-} from 'three'
+import { NearestFilter, Texture, TextureLoader } from 'three'
+import images from '@/lib/images'
 export const texturesData = new Map<number, TextureInfo>(
   blocksInfo.cubes.map((texture) => [texture.id, texture])
 )
-
 export const texturesLoaded = new Map<string, Texture>(
-  textureList.map((image) => {
-    const texture = new TextureLoader().load(
-      `/src/assets/textures/${image.path}`
-    )
+  Object.entries(images).map(([key, value]) => {
+    const texture = new TextureLoader().load(value)
+    texture.minFilter = NearestFilter
     texture.magFilter = NearestFilter
-    return [image.name, texture]
+    return [key, texture]
   })
 )
 

@@ -35,9 +35,7 @@ export const useKeyboard = () => {
     moveRight: false,
     jump: false,
   })
-  useEffect(() => {
-    console.log('current slot', hotBarCurrentSlot)
-  }, [hotBarCurrentSlot])
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const { code } = e
