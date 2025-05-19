@@ -3,8 +3,8 @@ import { useMenuStore } from '@/hooks/useMenuStore'
 import { useState } from 'react'
 
 export const MainMenu = () => {
-  const { setWorld, getTotalWorlds } = useMinecraftStore()
-  const { setMainMenu } = useMenuStore()
+  const { setWorld, getTotalWorlds } = useMinecraftStore((state) => state)
+  const { setMainMenu } = useMenuStore((state) => state)
   const [worldSelection, setWorldSelection] = useState(false)
   return (
     <>
@@ -38,6 +38,7 @@ export const MainMenu = () => {
                 .fill(0)
                 .map((_, index) => (
                   <button
+                    className='cursor-pointer bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
                     key={index}
                     disabled={getTotalWorlds() <= 0}
                     onClick={() => {
@@ -48,7 +49,12 @@ export const MainMenu = () => {
                     World {index + 1}
                   </button>
                 ))}
-              <button onClick={() => setWorldSelection(false)}>Back</button>
+              <button
+                className='cursor-pointer bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
+                onClick={() => setWorldSelection(false)}
+              >
+                Back
+              </button>
             </>
           )}
         </div>

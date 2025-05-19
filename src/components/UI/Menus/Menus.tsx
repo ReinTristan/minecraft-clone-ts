@@ -6,7 +6,7 @@ import { useKeyboard } from '@/hooks/useKeyboard'
 import { useEffect } from 'react'
 import { HotBar } from '../HUD/HotBar'
 export function Menus() {
-  const { mainMenu, pauseMenu, setPauseMenu } = useMenuStore()
+  const { mainMenu, pauseMenu, setPauseMenu } = useMenuStore((state) => state)
   const { pause } = useKeyboard()
   useEffect(() => {
     if (pause) {

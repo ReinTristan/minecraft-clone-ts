@@ -1,10 +1,15 @@
 import { useBox } from '@react-three/cannon'
-import { Mesh } from 'three'
-import { texturesObj } from '@/assets/textures/textures'
-import { useEffect, useState } from 'react'
-import { ICube, useMinecraftStore } from '@/hooks/useMinecraftStore'
+import { Mesh, MeshStandardMaterial } from 'three'
+import { useState } from 'react'
+import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { ThreeEvent } from '@react-three/fiber'
-
+import { ICube, TexturePosition, TexturePositionKey } from '@/types/cubes'
+import {
+  combineTextures,
+  getMaterialsInfoById,
+  loadTextures,
+} from '@/lib/utils'
+import chroma from 'chroma-js'
 const FACE_DIRECTION_VALUES = {
   face0: [1, 0, 0],
   face1: [-1, 0, 0],
@@ -13,16 +18,31 @@ const FACE_DIRECTION_VALUES = {
   face4: [0, 0, 1],
   face5: [0, 0, -1],
 } as const
-export const Cube = ({ id, pos: position, texture }: ICube) => {
-  const { removeCube, addCube } = useMinecraftStore()
+export const Cube = ({ id, pos: position, textureId }: ICube) => {
+  const { removeCube, addCube, slots, hotBarCurrentSlot } = useMinecraftStore(
+    (state) => state
+  )
   const [isHovered, setIsHovered] = useState(false)
   const [ref] = useBox<Mesh>(() => ({
     type: 'Static',
     position,
   }))
+  const textures = getMaterialsInfoById(textureId)
+  const materials = Object.entries(textures.images).map(
+    ([position, texture]) => {
+      let textureColor =
+        textures.properties.color?.[position as TexturePositionKey] ?? '#EEEEEE'
+      const transparent = textures.type === 'transparent'
 
-  const activeTexture =
-    texturesObj[`${texture}Texture` as keyof typeof texturesObj]
+      return new MeshStandardMaterial({
+        map: texture,
+        color: isHovered
+          ? chroma.blend(textureColor, '#BBBBBB', 'multiply').hex()
+          : textureColor,
+        transparent,
+      })
+    }
+  )
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e?.stopPropagation()
     if (e.button === 2) {
@@ -32,13 +52,14 @@ export const Cube = ({ id, pos: position, texture }: ICube) => {
         FACE_DIRECTION_VALUES[
           `face${clickedFace}` as keyof typeof FACE_DIRECTION_VALUES
         ]
-
-      addCube(
+      const fullPosition = [
         position[0] + faceValues[0],
         position[1] + faceValues[1],
-        position[2] + faceValues[2]
-      )
-
+        position[2] + faceValues[2],
+      ] as [number, number, number]
+      const textureId = slots[hotBarCurrentSlot]
+      if (!textureId) return
+      addCube({ pos: fullPosition, textureId })
       return
     }
     removeCube(id)
@@ -57,13 +78,7 @@ export const Cube = ({ id, pos: position, texture }: ICube) => {
       onPointerDown={handleClick}
     >
       <boxGeometry attach='geometry' />
-      <meshStandardMaterial
-        map={activeTexture}
-        attach='material'
-        color={isHovered ? '#CCC' : 'white'}
-        transparent={true}
-        opacity={texture === 'glass' ? 0.6 : 1}
-      />
+      <primitive object={materials} attach='material' />
     </mesh>
   )
 }

@@ -1,0 +1,158 @@
+{
+  "cubes": [
+    {
+      "id": 1,
+      "name": "dirt",
+      "textures": {
+        "right": "dirt",
+        "left": "dirt",
+        "top": "dirt",
+        "bottom": "dirt",
+        "front": "dirt",
+        "back": "dirt"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+    {
+      "id": 2,
+      "name": "grass",
+      "textures": {
+        "right": "grass_block_side",
+        "left": "grass_block_side",
+        "top": "grass_block_top",
+        "bottom": "dirt",
+        "front": "grass_block_side",
+        "back": "grass_block_side"
+      },
+      "type": "standard",
+      "properties": {
+        "color": {
+          "top": "#9ccb6c"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "cobblestone",
+      "textures": {
+        "right": "cobblestone",
+        "left": "cobblestone",
+        "top": "cobblestone",
+        "bottom": "cobblestone",
+        "front": "cobblestone",
+        "back": "cobblestone"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+    {
+      "id": 4,
+      "name": "stone",
+      "textures": {
+        "right": "stone",
+        "left": "stone",
+        "top": "stone",
+        "bottom": "stone",
+        "front": "stone",
+        "back": "stone"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+    {
+      "id": 5,
+      "name": "oak_log",
+      "textures": {
+        "right": "oak_log",
+        "left": "oak_log",
+        "top": "oak_log_top",
+        "bottom": "oak_log_top",
+        "front": "oak_log",
+        "back": "oak_log"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+    {
+      "id": 6,
+      "name": "oak_planks",
+      "textures": {
+        "right": "oak_planks",
+        "left": "oak_planks",
+        "top": "oak_planks",
+        "bottom": "oak_planks",
+        "front": "oak_planks",
+        "back": "oak_planks"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+    {
+      "id": 7,
+      "name": "glass",
+      "textures": {
+        "right": "glass",
+        "left": "glass",
+        "top": "glass",
+        "bottom": "glass",
+        "front": "glass",
+        "back": "glass"
+      },
+      "type": "transparent",
+      "properties": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "id": 8,
+      "name": "stone_bicks",
+      "textures": {
+        "right": "stone_bricks",
+        "left": "stone_bricks",
+        "top": "stone_bricks",
+        "bottom": "stone_bricks",
+        "front": "stone_bricks",
+        "back": "stone_bricks"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+    {
+      "id": 9,
+      "name": "bricks",
+      "textures": {
+        "right": "bricks",
+        "left": "bricks",
+        "top": "bricks",
+        "bottom": "bricks",
+        "front": "bricks",
+        "back": "bricks"
+      },
+      "type": "standard",
+      "properties": {}
+    },
+
+    {
+      "id": 999,
+      "name": "grass_overlay",
+      "textures": {
+        "right": "grass_block_side",
+        "left": "grass_block_side",
+        "top": "grass_block_top",
+        "bottom": "dirt",
+        "front": "grass_block_side",
+        "back": "grass_block_side"
+      },
+      "type": "standard",
+      "properties": {
+        "overlayTextures": {
+          "right": "grass_block_side_overlay",
+          "left": "grass_block_side_overlay",
+          "front": "grass_block_side_overlay",
+          "back": "grass_block_side_overlay"
+        }
+      }
+    }
+  ]
+}

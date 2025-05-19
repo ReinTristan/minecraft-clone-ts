@@ -1,0 +1,18 @@
+[
+  { "name": "dirt", "path": "dirt.png" },
+  { "name": "grass", "path": "grass.jpg" },
+  { "name": "grass_block_side", "path": "grass_block_side.png" },
+  {
+    "name": "grass_block_side_overlay",
+    "path": "grass_block_side_overlay.png"
+  },
+  { "name": "grass_block_top", "path": "grass_block_top.png" },
+  { "name": "cobblestone", "path": "cobblestone.png" },
+  { "name": "stone", "path": "stone.png" },
+  { "name": "oak_log", "path": "oak_log.png" },
+  { "name": "oak_log_top", "path": "oak_log_top.png" },
+  { "name": "oak_planks", "path": "oak_planks.png" },
+  { "name": "glass", "path": "glass.png" },
+  { "name": "stone_bricks", "path": "stone_bricks.png" },
+  { "name": "bricks", "path": "bricks.png" }
+]

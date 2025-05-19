@@ -9,7 +9,7 @@ const CHARACTER_SPEED = 5
 const CHARACTER_JUMP_FORCE = 5
 export const Player = () => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } = useKeyboard()
-  const { pauseMenu } = useMenuStore()
+  const { pauseMenu } = useMenuStore((state) => state)
   const { camera } = useThree()
   const [ref, api] = useSphere<Mesh>(() => ({
     mass: 1,

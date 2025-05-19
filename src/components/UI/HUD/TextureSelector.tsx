@@ -3,7 +3,7 @@ import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { useKeyboard } from '@/hooks/useKeyboard'
 import * as images from '@/assets/textures/images'
 export const TextureSelector = () => {
-  const { texture, setTexture } = useMinecraftStore()
+  const { texture, setTexture } = 
   const { dirt, glass, grass, wood, log } = useKeyboard()
 
   useEffect(() => {

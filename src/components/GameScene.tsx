@@ -9,7 +9,7 @@ import { useMenuStore } from '@/hooks/useMenuStore'
 import { CrossHair } from '@/components/UI/HUD/CrossHair'
 
 export function GameScene() {
-  const { mainMenu, pauseMenu } = useMenuStore()
+  const { mainMenu, pauseMenu } = useMenuStore((state) => state)
   return (
     <>
       <Canvas>
