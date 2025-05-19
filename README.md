@@ -1,30 +1,23 @@
-# React + TypeScript + Vite
+# Minecraft Clone With TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple Minecraft clone built with TypeScript and Three.js based on [Midudev's](https://github.com/midudev) video on [YouTube](https://www.youtube.com/watch?v=dm7nfe3bOE4) from the original [freecodecamp's tutorial](https://www.freecodecamp.org/news/code-a-minecraft-clone-using-react-and-three-js/).
 
-Currently, two official plugins are available:
+## Improvements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Added TypeScript support
+- TailwindCSS for styling
+- Added multi-textures blocks
+- More blocks
+- Block Selection with Hotbar
+- Block breaking and placing
+- Multi World saving and loading using local storage
+- Improved performance and optimization
+- Inventory (Comming soon)
 
-## Expanding the ESLint configuration
+## Sources
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Original project by [freeCodeCamp](https://github.com/danba340/minecraft-freecodecamp)
+- Followed Tutorial from [Midudev](https://github.com/midudev/minecraft-clone)
+- Minecraft textures from [mcassest.cloud](https://mcasset.cloud/) by [InventivetalentDev](https://github.com/InventivetalentDev/minecraft-assets/tree/1.21.5)
+- Minecraft-Like font from [dafont.com](https://www.dafont.com/es/minecraft.font) by [Craftron Gaming
+  ](https://www.dafont.com/es/craftron-gaming.d6128)
