@@ -2,13 +2,13 @@ const version = import.meta.env.VITE_CURRENT_VERSION
 export function Info() {
   return (
     <div>
-      <span className='absolute top-8 right-8 text-5xl font-bold'>
+      <span className='absolute top-8 right-8 font-bold text-5xl'>
         Version {version}
       </span>
-      <span className='absolute right-8 bottom-8 text-2xl font-bold'>
+      <span className='absolute right-8 bottom-8 font-bold text-2xl'>
         Not affiliated with Minecraft / Mojang AB / Microsoft.
       </span>
-      <span className='absolute bottom-8 left-8 text-2xl font-bold'>
+      <span className='absolute bottom-8 left-8 font-bold text-2xl'>
         Made by{' '}
         <a
           href='https://github.com/reintristan/minecraft-clone-ts'

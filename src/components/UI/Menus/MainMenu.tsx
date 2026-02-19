@@ -1,6 +1,6 @@
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
-import { useMenuStore } from '@/hooks/useMenuStore'
 import { useState } from 'react'
+import { useMenuStore } from '@/hooks/useMenuStore'
+import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 
 export const MainMenu = () => {
   const { setWorld, getTotalWorlds } = useMinecraftStore((state) => state)
@@ -14,7 +14,7 @@ export const MainMenu = () => {
           {!worldSelection && (
             <>
               <button
-                className='cursor-pointer bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500'
+                className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500'
                 onClick={() => {
                   setWorld()
                   setMainMenu(false)
@@ -23,7 +23,7 @@ export const MainMenu = () => {
                 New World
               </button>
               <button
-                className='cursor-pointer bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
+                className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
                 disabled={getTotalWorlds() <= 0}
                 onClick={() => setWorldSelection(true)}
               >
@@ -38,7 +38,7 @@ export const MainMenu = () => {
                 .fill(0)
                 .map((_, index) => (
                   <button
-                    className='cursor-pointer bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
+                    className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
                     key={index}
                     disabled={getTotalWorlds() <= 0}
                     onClick={() => {
@@ -50,7 +50,7 @@ export const MainMenu = () => {
                   </button>
                 ))}
               <button
-                className='cursor-pointer bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
+                className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
                 onClick={() => setWorldSelection(false)}
               >
                 Back

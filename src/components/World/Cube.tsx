@@ -1,15 +1,16 @@
 import { useBox } from '@react-three/cannon'
-import { Mesh, MeshStandardMaterial } from 'three'
-import { useState } from 'react'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { ThreeEvent } from '@react-three/fiber'
-import { ICube, TexturePosition, TexturePositionKey } from '@/types/cubes'
+import chroma from 'chroma-js'
+import { useState } from 'react'
+import { Mesh, MeshStandardMaterial } from 'three'
+import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import {
   combineTextures,
   getMaterialsInfoById,
   loadTextures,
 } from '@/lib/utils'
-import chroma from 'chroma-js'
+import { ICube, TexturePosition, TexturePositionKey } from '@/types/cubes'
+
 const FACE_DIRECTION_VALUES = {
   face0: [1, 0, 0],
   face1: [-1, 0, 0],

@@ -1,5 +1,5 @@
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { Cube } from '@/components/World/Cube'
+import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 
 export const Cubes = () => {
   const cubes = useMinecraftStore((state) => state.cubes)

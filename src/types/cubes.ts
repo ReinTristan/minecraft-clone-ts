@@ -35,12 +35,12 @@ export interface TextureInfo {
 }
 
 export interface CubeFaces {
-  top: Texture
-  bottom: Texture
-  left: Texture
-  right: Texture
-  front: Texture
-  back: Texture
+  top: Texture<HTMLImageElement>
+  bottom: Texture<HTMLImageElement>
+  left: Texture<HTMLImageElement>
+  right: Texture<HTMLImageElement>
+  front: Texture<HTMLImageElement>
+  back: Texture<HTMLImageElement>
 }
 
 export interface TexturePosition {

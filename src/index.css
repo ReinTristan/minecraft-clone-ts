@@ -1,12 +1,12 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  --font-mc: 'Minecraft', sans-serif;
+  --font-mc: "Minecraft", sans-serif;
 }
 
 @font-face {
-  font-family: 'Minecraft';
-  src: url('./fonts/Minecraft.ttf');
+  font-family: "Minecraft";
+  src: url("./fonts/Minecraft.ttf");
   font-weight: normal;
   font-style: normal;
 }

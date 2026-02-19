@@ -63,7 +63,7 @@ export const useKeyboard = () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.removeEventListener('keyup', handleKeyUp)
     }
-  }, [])
+  }, [setHotBarCurrentSlot])
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       console.log('hotBarCurrentSlot', hotBarCurrentSlot)
@@ -81,6 +81,6 @@ export const useKeyboard = () => {
     return () => {
       document.removeEventListener('wheel', handleWheel)
     }
-  }, [hotBarCurrentSlot])
+  }, [hotBarCurrentSlot, setHotBarCurrentSlot])
   return actions
 }

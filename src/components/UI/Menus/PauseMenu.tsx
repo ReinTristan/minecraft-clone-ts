@@ -7,7 +7,7 @@ export const PauseMenu = () => {
   return (
     <div className='absolute top-1/4 left-1/2 flex -translate-x-1/2 -translate-y-1/4 flex-col gap-4 rounded-lg'>
       <button
-        className='bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500'
+        className='bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500'
         onClick={() => {
           setPauseMenu(false)
         }}
@@ -15,7 +15,7 @@ export const PauseMenu = () => {
         Resume
       </button>
       <button
-        className='bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500'
+        className='bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500'
         onClick={() => {
           saveWorld()
           setPauseMenu(false)
@@ -24,7 +24,7 @@ export const PauseMenu = () => {
         Save World
       </button>
       <button
-        className='bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500'
+        className='bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500'
         onClick={() => {
           resetWorld()
           setPauseMenu(false)
@@ -33,7 +33,7 @@ export const PauseMenu = () => {
         Reset World
       </button>
       <button
-        className='bg-neutral-400 p-4 text-5xl font-bold hover:bg-neutral-500'
+        className='bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500'
         onClick={() => {
           setPauseMenu(false)
           setMainMenu(true)

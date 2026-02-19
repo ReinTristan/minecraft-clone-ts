@@ -50,7 +50,7 @@
         "noUnusedLabels": "error",
         "noUnusedPrivateClassMembers": "error",
         "noUnusedVariables": "error",
-        "useExhaustiveDependencies": "warn",
+        "useExhaustiveDependencies": "info",
         "useHookAtTopLevel": "error",
         "useIsNan": "error",
         "useValidForDirection": "error",
@@ -98,6 +98,9 @@
         "noWith": "error",
         "useGetterReturn": "error",
         "useNamespaceKeyword": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "info"
       }
     },
     "includes": ["**", "**/dist", "**/.eslintrc.cjs"]
@@ -119,6 +122,11 @@
     "formatter": {
       "indentScriptAndStyle": false,
       "selfCloseVoidElements": "always"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   },
   "overrides": [
@@ -161,6 +169,11 @@
   ],
   "assist": {
     "enabled": true,
-    "actions": { "source": { "organizeImports": "on" } }
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedProperties": "on"
+      }
+    }
   }
 }

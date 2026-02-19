@@ -1,7 +1,7 @@
 import { usePlane } from '@react-three/cannon'
+import { ThreeEvent } from '@react-three/fiber'
 import { Mesh, RepeatWrapping, Texture } from 'three'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
-import { ThreeEvent } from '@react-three/fiber'
 import { texturesLoaded } from '@/lib/utils'
 
 const groundTexture = texturesLoaded.get('grass_block_top')?.clone() as Texture
