@@ -19,7 +19,7 @@ export const Player = () => {
   }))
   const pos = useRef([0, 0, 0])
   useEffect(() => {
-    api.position.subscribe((p) => {
+    return api.position.subscribe((p) => {
       pos.current = p
     })
   }, [api.position])
@@ -27,7 +27,7 @@ export const Player = () => {
   const vel = useRef([0, 0, 0])
 
   useEffect(() => {
-    api.velocity.subscribe((v) => {
+    return api.velocity.subscribe((v) => {
       vel.current = v
     })
   }, [api.velocity])
@@ -35,7 +35,7 @@ export const Player = () => {
   const rot = useRef([0, 0, 0])
 
   useEffect(() => {
-    api.rotation.subscribe((r) => {
+    return api.rotation.subscribe((r) => {
       rot.current = r
     })
   }, [api.rotation])
