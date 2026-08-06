@@ -39,7 +39,7 @@ export const MainMenu = () => {
                 .map((_, index) => (
                   <button
                     className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
-                    key={index}
+                    key={`world_${index + 1}`}
                     disabled={getTotalWorlds() <= 0}
                     onClick={() => {
                       setWorld(`world_${index + 1}`)

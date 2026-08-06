@@ -9,7 +9,7 @@ function App() {
 
   return (
     <Suspense
-      fallback={<div className='fixed top-0 left-0 h-full w-full bg-black' />}
+      fallback={<div className='fixed top-0 left-0 h-full w-full bg-gray-950' />}
     >
       <main className='fixed h-full w-full select-none font-mc'>
         <GameScene />
