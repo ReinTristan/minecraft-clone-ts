@@ -77,7 +77,7 @@ export const useKeyboard = () => {
         )
       }
     }
-    document.addEventListener('wheel', handleWheel)
+    document.addEventListener('wheel', handleWheel, { passive: true })
     return () => {
       document.removeEventListener('wheel', handleWheel)
     }

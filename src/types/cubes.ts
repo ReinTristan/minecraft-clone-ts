@@ -6,7 +6,7 @@ export interface ICube {
   textureId: number
 }
 
-export interface TextureProperties {
+interface TextureProperties {
   color?: {
     right?: string
     left?: string
