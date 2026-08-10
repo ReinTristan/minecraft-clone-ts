@@ -9,25 +9,25 @@ import { Ground } from '@/components/World/Ground'
 import { useMenuStore } from '@/hooks/useMenuStore'
 
 export function GameScene() {
-	const { mainMenu, pauseMenu } = useMenuStore((state) => state)
-	return (
-		<>
-			<Canvas>
-				<Sky sunPosition={[100, 100, 20]} />
-				{!mainMenu && (
-					<>
-						<ambientLight intensity={1} />
-						<Fvp />
-						<Physics>
-							<Ground />
-							<Player />
-							<Cubes />
-						</Physics>
-					</>
-				)}
-				<Stats />
-			</Canvas>
-			{!mainMenu && !pauseMenu && <CrossHair />}
-		</>
-	)
+  const { mainMenu, pauseMenu } = useMenuStore((state) => state)
+  return (
+    <>
+      <Canvas>
+        <Sky sunPosition={[100, 100, 20]} />
+        {!mainMenu && (
+          <>
+            <ambientLight intensity={1} />
+            <Fvp />
+            <Physics>
+              <Ground />
+              <Player />
+              <Cubes />
+            </Physics>
+          </>
+        )}
+        <Stats />
+      </Canvas>
+      {!mainMenu && !pauseMenu && <CrossHair />}
+    </>
+  )
 }
