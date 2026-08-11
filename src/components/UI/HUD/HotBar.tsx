@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
-import { initialTexturesIds, texturesData, texturesLoaded } from '@/lib/utils'
+import { getBlockTextures, initialBlockIds } from '@/lib/textures/registry'
 export const HotBar = () => {
   const { slots, setSlots, hotBarCurrentSlot } = useMinecraftStore(
     (state) => state
   )
   const slotsPositions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   useEffect(() => {
-    setSlots([...initialTexturesIds])
+    setSlots([...initialBlockIds])
   }, [setSlots])
 
   return (
@@ -23,11 +23,7 @@ export const HotBar = () => {
           <div className='size-1/2 object-contain'>
             {slots[pos - 1] && (
               <img
-                src={
-                  texturesLoaded.get(
-                    texturesData.get(slots[pos - 1])?.textures.top ?? 'dirt'
-                  )?.image.src
-                }
+                src={getBlockTextures(slots[pos - 1]).iconUrl}
                 alt={`slot${pos}`}
                 className='size-full'
               />

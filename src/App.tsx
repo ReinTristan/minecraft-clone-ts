@@ -1,23 +1,33 @@
-import { Suspense } from 'react'
+import { type ReactNode, Suspense, use } from 'react'
 import { GameScene } from '@/components/GameScene'
+import { LoadingScreen } from '@/components/UI/LoadingScreen'
 import { Menus } from '@/components/UI/Menus/Menus'
+import { loadAllTextures } from '@/lib/textures/registry'
 import { Info } from './components/UI/HUD/Info'
 import { useMenuStore } from './hooks/useMenuStore'
+
+/**
+ * Suspende hasta que el registry haya compuesto todas las texturas. Nada se
+ * carga en import-time: montar la escena antes de esto dejaría a Cube, Ground
+ * y HotBar leyendo un registry vacío.
+ */
+function TexturesGate({ children }: { children: ReactNode }) {
+  use(loadAllTextures())
+  return children
+}
 
 function App() {
   const { mainMenu } = useMenuStore((state) => state)
 
   return (
-    <Suspense
-      fallback={
-        <div className='fixed top-0 left-0 h-full w-full bg-gray-950' />
-      }
-    >
-      <main className='fixed h-full w-full select-none font-mc'>
-        <GameScene />
-        <Menus />
-        {mainMenu && <Info />}
-      </main>
+    <Suspense fallback={<LoadingScreen />}>
+      <TexturesGate>
+        <main className='fixed h-full w-full select-none font-mc'>
+          <GameScene />
+          <Menus />
+          {mainMenu && <Info />}
+        </main>
+      </TexturesGate>
     </Suspense>
   )
 }
