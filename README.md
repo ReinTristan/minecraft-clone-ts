@@ -31,7 +31,7 @@ pnpm build    # typecheck + production build
 
 - Original project by [freeCodeCamp](https://github.com/danba340/minecraft-freecodecamp)
 - Followed Tutorial from [Midudev](https://github.com/midudev/minecraft-clone)
-- Minecraft-Like font from [dafont.com](https://www.dafont.com/es/minecraft.font) by [Craftron Gaming](https://www.dafont.com/es/craftron-gaming.d6128)
+- [Pixelify Sans](https://github.com/eifetx/Pixelify-Sans) by The Pixelify Sans Project Authors, licensed under the [SIL Open Font License 1.1](https://openfontlicense.org/) and bundled via [Fontsource](https://fontsource.org/fonts/pixelify-sans)
 
 ---
 
