@@ -6,10 +6,10 @@
  * espera será real y esta pantalla ya estará en su sitio.
  */
 export const LoadingScreen = () => (
-	<div className='fixed top-0 left-0 flex h-full w-full select-none flex-col items-center justify-center gap-6 bg-gray-950 font-mc text-neutral-300'>
-		<p className='text-xl'>Loading textures…</p>
-		<div className='h-2 w-64 overflow-hidden border-2 border-neutral-700'>
-			<div className='h-full w-1/3 animate-pulse bg-neutral-500' />
-		</div>
-	</div>
+  <div className='fixed top-0 left-0 flex h-full w-full select-none flex-col items-center justify-center gap-6 bg-gray-950 font-mc text-neutral-300'>
+    <p className='text-xl'>Loading textures…</p>
+    <div className='h-2 w-64 overflow-hidden border-2 border-neutral-700'>
+      <div className='h-full w-1/3 animate-pulse bg-neutral-500' />
+    </div>
+  </div>
 )
