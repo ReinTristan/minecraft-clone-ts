@@ -2,17 +2,15 @@ import { usePlane } from '@react-three/cannon'
 import { ThreeEvent } from '@react-three/fiber'
 import { useMemo } from 'react'
 import { Mesh, RepeatWrapping } from 'three'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { createGroundTexture } from '@/lib/textures/registry'
+import { useWorldStore } from '@/store/useWorldStore'
 
 function Ground() {
   const [ref] = usePlane<Mesh>(() => ({
     rotation: [-Math.PI / 2, 0, 0],
     position: [-0.5, -0.5, -0.5],
   }))
-  const { addCube, slots, hotBarCurrentSlot } = useMinecraftStore(
-    (state) => state
-  )
+  const { addCube, slots, hotBarCurrentSlot } = useWorldStore((state) => state)
 
   // Textura propia del suelo, no la compartida del bloque de césped: aquí lleva
   // RepeatWrapping ×100. Wrap y repeat se fijan una sola vez, no en cada render.

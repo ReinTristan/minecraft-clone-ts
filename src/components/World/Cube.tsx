@@ -2,8 +2,8 @@ import { useBox } from '@react-three/cannon'
 import { ThreeEvent } from '@react-three/fiber'
 import { useState } from 'react'
 import { Mesh, MeshStandardMaterial } from 'three'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { getBlockTextures } from '@/lib/textures/registry'
+import { useWorldStore } from '@/store/useWorldStore'
 import { ICube } from '@/types/cubes'
 import { FACES } from '@/types/textures'
 
@@ -16,7 +16,7 @@ const FACE_DIRECTION_VALUES = {
   face5: [0, 0, -1],
 } as const
 export const Cube = ({ id, pos: position, textureId }: ICube) => {
-  const { removeCube, addCube, slots, hotBarCurrentSlot } = useMinecraftStore(
+  const { removeCube, addCube, slots, hotBarCurrentSlot } = useWorldStore(
     (state) => state
   )
   const [isHovered, setIsHovered] = useState(false)

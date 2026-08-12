@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid'
 import { create } from 'zustand/react'
 import { ICube, PositionType } from '@/types/cubes'
 
-export interface IStore {
+export interface IWorldStore {
   cubes: ICube[]
   currentWorld: string | null
   addCube: ({
@@ -33,7 +33,7 @@ const setLocalStorage = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value))
 }
 
-export const useMinecraftStore = create<IStore>()((set) => ({
+export const useWorldStore = create<IWorldStore>()((set) => ({
   cubes: [],
   currentWorld: null,
   hotBarCurrentSlot: 0,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useMinecraftStore } from './useMinecraftStore'
+import { useWorldStore } from '@/store/useWorldStore'
 
 const ACTIONS_KEYBOARD_MAP = {
   Escape: 'pause',
@@ -24,7 +24,7 @@ const ACTIONS_KEYBOARD_DIGIT = {
 
 type actionsKey = keyof typeof ACTIONS_KEYBOARD_MAP
 export const useKeyboard = () => {
-  const { hotBarCurrentSlot, setHotBarCurrentSlot } = useMinecraftStore(
+  const { hotBarCurrentSlot, setHotBarCurrentSlot } = useWorldStore(
     (state) => state
   )
   const [actions, setActions] = useState({

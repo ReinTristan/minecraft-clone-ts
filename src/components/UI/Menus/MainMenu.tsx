@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useMenuStore } from '@/hooks/useMenuStore'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
+import { useMenuStore } from '@/store/useMenuStore'
+import { useWorldStore } from '@/store/useWorldStore'
 
 export const MainMenu = () => {
-  const { setWorld, getTotalWorlds } = useMinecraftStore((state) => state)
+  const { setWorld, getTotalWorlds } = useWorldStore((state) => state)
   const { setMainMenu } = useMenuStore((state) => state)
   const [worldSelection, setWorldSelection] = useState(false)
   return (

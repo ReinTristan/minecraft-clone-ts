@@ -6,7 +6,7 @@ import { Player } from '@/components/Player/Player'
 import { CrossHair } from '@/components/UI/HUD/CrossHair'
 import { Cubes } from '@/components/World/Cubes'
 import { Ground } from '@/components/World/Ground'
-import { useMenuStore } from '@/hooks/useMenuStore'
+import { useMenuStore } from '@/store/useMenuStore'
 
 export function GameScene() {
   const { mainMenu, pauseMenu } = useMenuStore((state) => state)

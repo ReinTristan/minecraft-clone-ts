@@ -35,7 +35,7 @@ The app runs under `<StrictMode>`, so effects double-invoke in dev — the canno
 ### Two stores drive everything
 
 - `useMenuStore` — which UI layer is up (`mainMenu`, `pauseMenu`, `textureMenu`). This gates the 3D scene: `GameScene` renders the `<Canvas>` and `<Sky>` always, but only mounts `<Physics>`, `Ground`, `Player`, `Cubes`, and pointer-lock (`Fvp`) when `mainMenu` is false. `pauseMenu` also short-circuits `Player`'s `useFrame` and unmounts `PointerLockControls`.
-- `useMinecraftStore` — the world (`cubes: ICube[]`), the current save slot, and the hotbar (`slots`, `hotBarCurrentSlot`).
+- `useWorldStore` — the world (`cubes: ICube[]`), the current save slot, and the hotbar (`slots`, `hotBarCurrentSlot`).
 
 Both are read as `useStore((state) => state)` throughout, i.e. components subscribe to the whole store.
 

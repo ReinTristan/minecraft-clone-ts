@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { Mesh, Vector3 } from 'three'
 import { useKeyboard } from '@/hooks/useKeyboard'
-import { useMenuStore } from '@/hooks/useMenuStore'
+import { useMenuStore } from '@/store/useMenuStore'
 
 const CHARACTER_SPEED = 5
 const CHARACTER_JUMP_FORCE = 5

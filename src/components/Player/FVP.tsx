@@ -1,5 +1,5 @@
 import { PointerLockControls } from '@react-three/drei'
-import { useMenuStore } from '@/hooks/useMenuStore'
+import { useMenuStore } from '@/store/useMenuStore'
 
 function Fvp() {
   const { pauseMenu } = useMenuStore((state) => state)

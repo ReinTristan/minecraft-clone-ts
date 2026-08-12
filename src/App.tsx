@@ -3,8 +3,8 @@ import { GameScene } from '@/components/GameScene'
 import { LoadingScreen } from '@/components/UI/LoadingScreen'
 import { Menus } from '@/components/UI/Menus/Menus'
 import { loadAllTextures } from '@/lib/textures/registry'
+import { useMenuStore } from '@/store/useMenuStore'
 import { Info } from './components/UI/HUD/Info'
-import { useMenuStore } from './hooks/useMenuStore'
 
 /**
  * Suspende hasta que el registry haya compuesto todas las texturas. Nada se

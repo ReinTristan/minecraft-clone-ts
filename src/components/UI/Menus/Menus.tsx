@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { MainMenu } from '@/components/UI/Menus/MainMenu'
 import { PauseMenu } from '@/components/UI/Menus/PauseMenu'
 import { useKeyboard } from '@/hooks/useKeyboard'
-import { useMenuStore } from '@/hooks/useMenuStore'
+import { useMenuStore } from '@/store/useMenuStore'
 import { HotBar } from '../HUD/HotBar'
 export function Menus() {
   const { mainMenu, pauseMenu, setPauseMenu } = useMenuStore((state) => state)
