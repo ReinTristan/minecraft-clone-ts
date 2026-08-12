@@ -1,8 +1,8 @@
-import { useMenuStore } from '@/hooks/useMenuStore'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
+import { useMenuStore } from '@/store/useMenuStore'
+import { useWorldStore } from '@/store/useWorldStore'
 
 export const PauseMenu = () => {
-  const { saveWorld, resetWorld } = useMinecraftStore((state) => state)
+  const { saveWorld, resetWorld } = useWorldStore((state) => state)
   const { setMainMenu, setPauseMenu } = useMenuStore((state) => state)
   return (
     <div className='absolute top-1/4 left-1/2 flex -translate-x-1/2 -translate-y-1/4 flex-col gap-4 rounded-lg'>

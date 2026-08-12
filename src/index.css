@@ -1,12 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/pixelify-sans";
 
 @theme {
-  --font-mc: "Minecraft", sans-serif;
-}
-
-@font-face {
-  font-family: "Minecraft";
-  src: url("./fonts/Minecraft.ttf");
-  font-weight: normal;
-  font-style: normal;
+  --font-mc: "Pixelify Sans Variable", sans-serif;
 }

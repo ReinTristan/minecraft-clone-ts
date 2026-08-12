@@ -1,8 +1,8 @@
 import { Cube } from '@/components/World/Cube'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
+import { useWorldStore } from '@/store/useWorldStore'
 
 export const Cubes = () => {
-  const cubes = useMinecraftStore((state) => state.cubes)
+  const cubes = useWorldStore((state) => state.cubes)
   return cubes.map(({ id, pos, textureId }) => {
     return <Cube key={id} id={id} pos={pos} textureId={textureId} />
   })

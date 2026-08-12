@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
 import { getBlockTextures, initialBlockIds } from '@/lib/textures/registry'
+import { useWorldStore } from '@/store/useWorldStore'
 export const HotBar = () => {
-  const { slots, setSlots, hotBarCurrentSlot } = useMinecraftStore(
-    (state) => state
-  )
+  const { slots, setSlots, hotBarCurrentSlot } = useWorldStore((state) => state)
   const slotsPositions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   useEffect(() => {
     setSlots([...initialBlockIds])

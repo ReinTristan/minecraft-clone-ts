@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import { useMenuStore } from '@/hooks/useMenuStore'
-import { useMinecraftStore } from '@/hooks/useMinecraftStore'
+import { useMenuStore } from '@/store/useMenuStore'
+import { useWorldStore } from '@/store/useWorldStore'
 
 export const MainMenu = () => {
-  const { setWorld, getTotalWorlds } = useMinecraftStore((state) => state)
+  const { setWorld, getTotalWorlds } = useWorldStore((state) => state)
   const { setMainMenu } = useMenuStore((state) => state)
   const [worldSelection, setWorldSelection] = useState(false)
   return (
     <>
       <div className='absolute top-1/4 left-1/2 z-10 flex w-fit -translate-x-1/2 -translate-y-1/4 flex-col'>
-        <h1 className='text-center text-8xl'>Minecraft</h1>
+        <h1 className='text-center text-8xl'>MC-Clone</h1>
         <div className='mt-4 flex flex-col gap-4'>
           {!worldSelection && (
             <>
