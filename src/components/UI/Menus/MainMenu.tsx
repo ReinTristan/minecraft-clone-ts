@@ -9,7 +9,7 @@ export const MainMenu = () => {
   return (
     <>
       <div className='absolute top-1/4 left-1/2 z-10 flex w-fit -translate-x-1/2 -translate-y-1/4 flex-col'>
-        <h1 className='text-center text-8xl'>Minecraft</h1>
+        <h1 className='text-center text-8xl'>MC-Clone</h1>
         <div className='mt-4 flex flex-col gap-4'>
           {!worldSelection && (
             <>

@@ -1,6 +1,6 @@
-# Minecraft Clone With TypeScript
+# MC-Clone
 
-This is a simple Minecraft clone built with TypeScript and Three.js based on [Midudev's](https://github.com/midudev) video on [YouTube](https://www.youtube.com/watch?v=dm7nfe3bOE4) from the original [freecodecamp's tutorial](https://www.freecodecamp.org/news/code-a-minecraft-clone-using-react-and-three-js/).
+MC-Clone is a simple voxel sandbox — a Minecraft-inspired learning project built with TypeScript and Three.js — based on [Midudev's](https://github.com/midudev) video on [YouTube](https://www.youtube.com/watch?v=dm7nfe3bOE4) from the original [freecodecamp's tutorial](https://www.freecodecamp.org/news/code-a-minecraft-clone-using-react-and-three-js/).
 
 ## Improvements
 
