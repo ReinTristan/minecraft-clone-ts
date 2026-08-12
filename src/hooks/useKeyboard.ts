@@ -66,7 +66,6 @@ export const useKeyboard = () => {
   }, [setHotBarCurrentSlot])
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      console.log('hotBarCurrentSlot', hotBarCurrentSlot)
       if (e.deltaY < 0) {
         setHotBarCurrentSlot(
           hotBarCurrentSlot === 8 ? 0 : hotBarCurrentSlot + 1
