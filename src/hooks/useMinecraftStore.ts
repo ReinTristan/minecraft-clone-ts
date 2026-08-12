@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import { create } from 'zustand/react'
-import { ICube, PositionType, TextureInfo } from '@/types/cubes'
+import { ICube, PositionType } from '@/types/cubes'
 
 export interface IStore {
   cubes: ICube[]

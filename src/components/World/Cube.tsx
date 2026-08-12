@@ -1,15 +1,11 @@
 import { useBox } from '@react-three/cannon'
 import { ThreeEvent } from '@react-three/fiber'
-import chroma from 'chroma-js'
 import { useState } from 'react'
 import { Mesh, MeshStandardMaterial } from 'three'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
-import {
-  combineTextures,
-  getMaterialsInfoById,
-  loadTextures,
-} from '@/lib/utils'
-import { ICube, TexturePosition, TexturePositionKey } from '@/types/cubes'
+import { getBlockTextures } from '@/lib/textures/registry'
+import { ICube } from '@/types/cubes'
+import { FACES } from '@/types/textures'
 
 const FACE_DIRECTION_VALUES = {
   face0: [1, 0, 0],
@@ -28,21 +24,19 @@ export const Cube = ({ id, pos: position, textureId }: ICube) => {
     type: 'Static',
     position,
   }))
-  const textures = getMaterialsInfoById(textureId)
-  const materials = Object.entries(textures.images).map(
-    ([position, texture]) => {
-      let textureColor =
-        textures.properties.color?.[position as TexturePositionKey] ?? '#EEEEEE'
-      const transparent = textures.type === 'transparent'
-
-      return new MeshStandardMaterial({
-        map: texture,
-        color: isHovered
-          ? chroma.blend(textureColor, '#BBBBBB', 'multiply').hex()
-          : textureColor,
-        transparent,
+  const block = getBlockTextures(textureId)
+  // FACES está en el orden de índices de material de BoxGeometry:
+  // +X, -X, +Y, -Y, +Z, -Z. No reordenar sin mover también los materiales.
+  const materials = FACES.map(
+    (face) =>
+      new MeshStandardMaterial({
+        map: block.faces[face],
+        // el tinte viene horneado en la textura, así que el color base es
+        // blanco y solo se usa para oscurecer en hover
+        color: isHovered ? '#BBBBBB' : '#FFFFFF',
+        transparent: block.type === 'transparent',
+        opacity: block.opacity,
       })
-    }
   )
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e?.stopPropagation()

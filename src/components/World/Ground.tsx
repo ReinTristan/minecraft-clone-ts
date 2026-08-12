@@ -1,12 +1,10 @@
 import { usePlane } from '@react-three/cannon'
 import { ThreeEvent } from '@react-three/fiber'
-import { Mesh, RepeatWrapping, Texture } from 'three'
+import { useMemo } from 'react'
+import { Mesh, RepeatWrapping } from 'three'
 import { useMinecraftStore } from '@/hooks/useMinecraftStore'
-import { texturesLoaded } from '@/lib/utils'
+import { createGroundTexture } from '@/lib/textures/registry'
 
-const groundTexture = texturesLoaded.get('grass_block_top')?.clone() as Texture
-groundTexture.wrapS = RepeatWrapping
-groundTexture.wrapT = RepeatWrapping
 function Ground() {
   const [ref] = usePlane<Mesh>(() => ({
     rotation: [-Math.PI / 2, 0, 0],
@@ -16,7 +14,15 @@ function Ground() {
     (state) => state
   )
 
-  groundTexture.repeat.set(100, 100)
+  // Textura propia del suelo, no la compartida del bloque de césped: aquí lleva
+  // RepeatWrapping ×100. Wrap y repeat se fijan una sola vez, no en cada render.
+  const groundTexture = useMemo(() => {
+    const texture = createGroundTexture()
+    texture.wrapS = RepeatWrapping
+    texture.wrapT = RepeatWrapping
+    texture.repeat.set(100, 100)
+    return texture
+  }, [])
 
   const handleClickGround = (e: ThreeEvent<MouseEvent>) => {
     e?.stopPropagation()
@@ -30,11 +36,7 @@ function Ground() {
   return (
     <mesh ref={ref} onPointerDown={handleClickGround}>
       <planeGeometry attach='geometry' args={[100, 100]} />
-      <meshStandardMaterial
-        attach='material'
-        map={groundTexture}
-        color='#9ccb6c'
-      />
+      <meshStandardMaterial attach='material' map={groundTexture} />
     </mesh>
   )
 }
