@@ -27,6 +27,10 @@ pnpm dev      # dev server, exposed on the LAN
 pnpm build    # typecheck + production build
 ```
 
+## Version history
+
+What changed in each release is in [CHANGELOG.md](CHANGELOG.md).
+
 ## Sources
 
 - Original project by [freeCodeCamp](https://github.com/danba340/minecraft-freecodecamp)
