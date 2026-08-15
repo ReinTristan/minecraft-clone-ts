@@ -6,6 +6,23 @@ All notable changes to MC-Clone, newest first.
 
 ---
 
+## 0.4.2 — 2026-08-14
+
+Groundwork. Mostly invisible from the outside, except for one save bug that wasn't.
+
+**Fixed**
+- Saving a brand-new world twice created **two** worlds instead of overwriting the first one. Hitting "Save World" a second time now updates the world you already saved.
+
+**Added**
+- The project has tests. They run in a real headless browser rather than a simulated DOM, which matters here: every texture is drawn onto a canvas at runtime, and a simulated DOM has no canvas to draw on. So the texture engine is now covered for real — including a pixel-level check that grass keeps its green top edge over a dirt side, the exact thing that was silently broken before 0.4.0.
+- 69 tests covering the texture engine, both stores, the menus and the hotbar, plus a check that the 3D scene mounts.
+
+**Changed**
+- Saving a world no longer forces the whole scene to re-render.
+- The main menu no longer writes to storage while drawing itself.
+
+---
+
 ## 0.4.1 — 2026-08-12
 
 Naming, licensing and structure.

@@ -8,19 +8,39 @@ Package manager is pnpm (v11, Node >= 24).
 
 ```bash
 pnpm dev        # vite dev server, exposed on the LAN (--host)
-pnpm build      # tsc (typecheck, noEmit) && vite build
+pnpm build      # tsc -b (typecheck app + tests + configs, noEmit) && vite build
 pnpm biome      # biome check --write  — lint + format + organize imports
+pnpm test       # vitest in watch mode
+pnpm test:run   # vitest, single run
 pnpm preview    # preview the production build
 pnpm start      # serve dist/ as an SPA on $PORT
 ```
-
-There is no test framework configured in this repo — don't invent test commands.
 
 Biome (not ESLint/Prettier) is the only linter/formatter; `biome.json` is the source of truth for style — read it instead of guessing. `.vscode/settings.json` runs it on save with `source.fixAll.biome` and `source.organizeImports.biome`.
 
 **Run `pnpm biome` after creating or editing any file.** Formatting differences are not editor diagnostics, so a misformatted file looks clean until someone saves it in VS Code and gets a whole-file diff.
 
-`pnpm-workspace.yaml` sets `minimumReleaseAge: 1440` (packages must be 24h old before install) plus pinned security `overrides`. Keep both in mind when adding or bumping dependencies.
+`pnpm-workspace.yaml` sets `minimumReleaseAge: 1440` (packages must be 24h old before install), pinned security `overrides`, and `onlyBuiltDependencies` (pnpm blocks install scripts by default; `playwright` needs its own to resolve browsers). Keep all three in mind when adding or bumping dependencies.
+
+## Testing
+
+Vitest in **browser mode** (added in 0.4.2): tests run inside a real headless chromium driven by Playwright, **not** jsdom. That's deliberate — jsdom's `getContext('2d')` returns `null`, which would make the entire texture pipeline untestable. Real canvas, real WebGL, real `localStorage` come for free.
+
+- Config lives in `vitest.config.ts`, composed onto `vite.config.ts` with `mergeConfig` so plugins and the `@/*` alias are inherited. **Don't move it into `vite.config.ts`.**
+- Tests live in a root **`test/`** directory that mirrors `src/`'s categories (`test/store/`, `test/lib/textures/`, `test/components/UI/Menus/`, …), never colocated. `vitest.config.ts` pins that with `include: ['test/**/*.test.{ts,tsx}']`, so a `*.test.ts` left inside `src/` silently never runs.
+- Tests import production code **only through the `@/` alias** — that's what makes the split painless, since the alias resolves to an absolute path and doesn't care where the importer lives. Don't introduce `../../src/...` imports.
+- Typechecking them is `tsconfig.test.json` (its own project, `include: ["test"]`, same options as `tsconfig.app.json` plus the `@/*` paths), referenced from `tsconfig.json`. **`pnpm build` runs `tsc -b`, not `tsc`** — the root config is `"files": []` + references, so plain `tsc` checks *nothing at all* and exits 0. If you ever see that flag drop, the build has stopped typechecking.
+- **Test info are written in English** — the same split as the rest of the repo, where identifiers and UI copy are English and the explanations are Spanish. `pnpm test:run` output should read entirely in English.
+- `render` comes from **`vitest-browser-react/pure`** (not the default entry — only `/pure` exports `configure`, and mixing entries risks two module instances). It is **async**: `const screen = await render(<Foo />)`.
+- `test/setup.ts` enables `reactStrictMode` (matching `main.tsx`) and, before each test, clears `localStorage` and resets both stores — **in that order**, since `totalWorlds` is re-read from storage.
+
+Three rules that cost time to rediscover:
+
+- **Don't mock the texture registry or `localStorage`.** Both are real here. `HotBar` and `GameScene` use `await loadAllTextures()` in `beforeAll` and consume the real registry.
+- **The stores are module-level singletons**, created once per page and shared by every test in a file. Reset happens in the setup file, not per test.
+- New dependencies used by tests must be added to `optimizeDeps.include` in `vitest.config.ts`, or Vite discovers them mid-run, pre-bundles them and **reloads the page**, killing tests that were already running. It only bites on a cold cache, which is the worst time for it.
+
+R3F/cannon behaviour beyond "it mounts" (movement, physics, placing and breaking blocks, pointer lock) is **manual QA**, not covered by the suite.
 
 ## Environment
 
@@ -28,7 +48,7 @@ Biome (not ESLint/Prettier) is the only linter/formatter; `biome.json` is the so
 
 ## Architecture
 
-React 19 + `@react-three/fiber` / `drei` / `cannon` (Three.js), Tailwind v4 (via the Vite plugin, configured in `src/index.css` with `@theme`, not a tailwind.config), Zustand for state. `@/*` aliases `./src/*` — declared in **both** `vite.config.ts` and `tsconfig.app.json`/`tsconfig.json`; changing it requires editing all of them.
+React 19 + `@react-three/fiber` / `drei` / `cannon` (Three.js), Tailwind v4 (via the Vite plugin, configured in `src/index.css` with `@theme`, not a tailwind.config), Zustand for state. `@/*` aliases `./src/*` — declared in `vite.config.ts` and in `tsconfig.app.json` / `tsconfig.test.json` / `tsconfig.json`; changing it requires editing all of them.
 
 The app runs under `<StrictMode>`, so effects double-invoke in dev — the cannon `api.*.subscribe` calls in `Player` must keep returning their unsubscribe.
 

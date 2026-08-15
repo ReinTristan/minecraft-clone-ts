@@ -1,5 +1,11 @@
 minimumReleaseAge: 1440
 
+# pnpm bloquea los scripts de instalación por defecto. playwright necesita el
+# suyo para resolver los navegadores (aquí ya están en ~/.cache/ms-playwright,
+# así que es un no-op, pero tiene que poder correr).
+onlyBuiltDependencies:
+  - playwright
+
 overrides:
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   brace-expansion@<1.1.18: ^1.1.18
