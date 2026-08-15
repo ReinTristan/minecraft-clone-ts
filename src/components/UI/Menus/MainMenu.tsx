@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useMenuStore } from '@/store/useMenuStore'
-import { useWorldStore } from '@/store/useWorldStore'
+import { useWorldStore, worldKey } from '@/store/useWorldStore'
 
 export const MainMenu = () => {
-  const { setWorld, getTotalWorlds } = useWorldStore((state) => state)
-  const { setMainMenu } = useMenuStore((state) => state)
+  const setWorld = useWorldStore((state) => state.setWorld)
+  const totalWorlds = useWorldStore((state) => state.totalWorlds)
+  const setMainMenu = useMenuStore((state) => state.setMainMenu)
   const [worldSelection, setWorldSelection] = useState(false)
   return (
     <>
@@ -24,7 +25,7 @@ export const MainMenu = () => {
               </button>
               <button
                 className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
-                disabled={getTotalWorlds() <= 0}
+                disabled={totalWorlds <= 0}
                 onClick={() => setWorldSelection(true)}
               >
                 Load World
@@ -34,15 +35,14 @@ export const MainMenu = () => {
 
           {worldSelection && (
             <>
-              {Array(getTotalWorlds())
+              {Array(totalWorlds)
                 .fill(0)
                 .map((_, index) => (
                   <button
                     className='cursor-pointer bg-neutral-400 p-4 font-bold text-5xl hover:bg-neutral-500 disabled:cursor-default disabled:bg-neutral-500'
-                    key={`world_${index + 1}`}
-                    disabled={getTotalWorlds() <= 0}
+                    key={worldKey(index + 1)}
                     onClick={() => {
-                      setWorld(`world_${index + 1}`)
+                      setWorld(worldKey(index + 1))
                       setMainMenu(false)
                     }}
                   >

@@ -5,6 +5,7 @@ import { ICube, PositionType } from '@/types/cubes'
 export interface IWorldStore {
   cubes: ICube[]
   currentWorld: string | null
+  totalWorlds: number
   addCube: ({
     pos,
     textureId,
@@ -13,11 +14,9 @@ export interface IWorldStore {
     textureId: number
   }) => void
   removeCube: (id: string) => void
-  saveWorld: (worldName?: string) => void
+  saveWorld: () => void
   resetWorld: () => void
   setWorld: (worldName?: string) => void
-  getTotalWorlds: () => number
-  setTotalWorlds: () => void
   slots: number[]
   setSlots: (slots: number[]) => void
   setToSlot: (slot: number, textureId: number) => void
@@ -25,33 +24,44 @@ export interface IWorldStore {
   setHotBarCurrentSlot: (slot: number) => void
 }
 
+export const TOTAL_WORLDS_KEY = 'totalWorlds'
+export const worldKey = (n: number) => `world_${n}`
+
 const getLocalStorage = <T>(key: string): T | null => {
   const item = localStorage.getItem(key)
-  return item ? (JSON.parse(item) as T) : null
+  if (!item) return null
+  try {
+    return JSON.parse(item) as T
+  } catch {
+    // Una clave corrupta no debe tumbar el menú principal: se trata como
+    // ausente y el mundo arranca vacío.
+    return null
+  }
 }
 const setLocalStorage = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value))
 }
 
-export const useWorldStore = create<IWorldStore>()((set) => ({
+/**
+ * Lee el contador de mundos. **Solo lee**: la versión anterior escribía el cero
+ * cuando la clave no existía, y encima se llamaba en pleno render de
+ * `MainMenu`, donde `<StrictMode>` no garantiza que un efecto ocurra una sola
+ * vez. No hace falta persistir un cero — con `?? 0` basta.
+ *
+ * Se exporta porque es también lo que permite resetear el store en los tests:
+ * `totalWorlds` se inicializa al crear el store, y el `create` corre una única
+ * vez a nivel de módulo.
+ */
+export const readTotalWorlds = (): number =>
+  getLocalStorage<number>(TOTAL_WORLDS_KEY) ?? 0
+
+export const useWorldStore = create<IWorldStore>()((set, get) => ({
   cubes: [],
   currentWorld: null,
+  totalWorlds: readTotalWorlds(),
   hotBarCurrentSlot: 0,
+  slots: [],
 
-  getTotalWorlds: () => {
-    let totalWorlds = getLocalStorage<number>('totalWorlds')
-    if (!totalWorlds) {
-      setLocalStorage<number>('totalWorlds', 0)
-      totalWorlds = 0
-    }
-    return totalWorlds
-  },
-  setTotalWorlds: () => {
-    set((state) => {
-      setLocalStorage<number>('totalWorlds', state.getTotalWorlds() + 1)
-      return state
-    })
-  },
   addCube: ({ pos, textureId }) => {
     set((state) => ({
       cubes: [
@@ -69,31 +79,39 @@ export const useWorldStore = create<IWorldStore>()((set) => ({
       cubes: state.cubes.filter((cube) => cube.id !== id),
     }))
   },
-  saveWorld: () => {
-    set((state) => {
-      if (!state.currentWorld) {
-        setLocalStorage<ICube[]>(
-          `world_${state.getTotalWorlds() + 1}`,
-          state.cubes
-        )
-        setLocalStorage<number>('totalWorlds', state.getTotalWorlds() + 1)
-      } else setLocalStorage<ICube[]>(state.currentWorld, state.cubes)
 
-      return state
-    })
+  /**
+   * Escribe **fuera** de `set`. Antes el `localStorage.setItem` vivía dentro
+   * del updater, que además devolvía `state` sin tocar: un updater impuro que
+   * notificaba igual a todos los suscriptores, o sea un re-render global de
+   * regalo cada vez que guardabas.
+   *
+   * Guardar un mundo nuevo también fija `currentWorld`. Sin eso, pulsar "Save
+   * World" dos veces creaba `world_1` **y** `world_2`.
+   */
+  saveWorld: () => {
+    const { cubes, currentWorld, totalWorlds } = get()
+    if (currentWorld) {
+      setLocalStorage<ICube[]>(currentWorld, cubes)
+      return
+    }
+    const next = totalWorlds + 1
+    const name = worldKey(next)
+    setLocalStorage<ICube[]>(name, cubes)
+    setLocalStorage<number>(TOTAL_WORLDS_KEY, next)
+    set({ currentWorld: name, totalWorlds: next })
   },
   resetWorld: () => {
     set(() => ({
       cubes: [],
     }))
   },
-  setWorld(worldName = '') {
+  setWorld: (worldName = '') => {
     set(() => ({
       cubes: getLocalStorage<ICube[]>(worldName) ?? [],
       currentWorld: worldName || null,
     }))
   },
-  slots: [],
   setSlots: (slots) => {
     set(() => ({
       slots,

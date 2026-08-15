@@ -1,6 +1,6 @@
 import { create } from 'zustand/react'
 
-interface IMenuStore {
+export interface IMenuStore {
   mainMenu: boolean
   pauseMenu: boolean
   textureMenu: boolean
@@ -9,7 +9,7 @@ interface IMenuStore {
   setTextureMenu: (value: boolean) => void
 }
 
-export const useMenuStore = create<IMenuStore>((set) => ({
+export const useMenuStore = create<IMenuStore>()((set) => ({
   mainMenu: true,
   pauseMenu: false,
   textureMenu: false,
